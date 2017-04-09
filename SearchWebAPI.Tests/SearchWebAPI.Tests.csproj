@@ -62,6 +62,10 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\LogWrapper\LogWrapper.csproj">
+      <Project>{a2c67a66-11ea-4a27-9608-a8ba2de3a3c1}</Project>
+      <Name>LogWrapper</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Search.Repository\Search.Repository.csproj">
       <Project>{2662B377-326B-43D1-9C51-6FE85F54AAC9}</Project>
       <Name>Search.Repository</Name>

@@ -10,6 +10,7 @@ using System.Net;
 using System.Net.Http;
 using System.Web.Http.Results;
 using System.Web.Http.ModelBinding;
+using LogWrapper;
 
 namespace SearchWebAPI.Tests
 {
@@ -17,18 +18,20 @@ namespace SearchWebAPI.Tests
     public class SearchWebApiControllerTests
     {
         Mock<ISearchService> _searchService;
+        Mock<ICoreLogger> _logger;
 
         [TestInitialize]
         public void Setup()
         {
             _searchService = new Mock<ISearchService>();
+            _logger = new Mock<ICoreLogger>();
         }
 
         [TestMethod]
         public void Api_Get_returns_all_persons_when_present()
         {
             _searchService.Setup(m => m.Get()).Returns(Persons);
-            var controller = new SearchController(_searchService.Object);
+            var controller = new SearchController(_searchService.Object, _logger.Object);
 
             var result = controller.Get();
             var contents = ((JsonResult<IEnumerable<Person>>)result).Content as IEnumerable<Person>;
@@ -41,7 +44,7 @@ namespace SearchWebAPI.Tests
         public void Api_Get_returns_empty_when_none_present()
         {
             _searchService.Setup(m => m.Get()).Returns(new List<Person>());
-            var controller = new SearchController(_searchService.Object);
+            var controller = new SearchController(_searchService.Object, _logger.Object);
 
             var result = controller.Get();
 
@@ -53,7 +56,7 @@ namespace SearchWebAPI.Tests
         public void Api_GetByName_returns_no_content_when_no_value_passed()
         {
             _searchService.Setup(m => m.Get()).Returns(Persons);
-            var controller = new SearchController(_searchService.Object);
+            var controller = new SearchController(_searchService.Object, _logger.Object);
 
             var result = controller.GetByName("");
 
@@ -66,7 +69,7 @@ namespace SearchWebAPI.Tests
         {
             var expectedCount = 2;
             _searchService.Setup(m => m.SearchBy(It.IsAny<string>())).Returns( Persons.Take(expectedCount));
-            var controller = new SearchController(_searchService.Object);
+            var controller = new SearchController(_searchService.Object, _logger.Object);
 
             var result = controller.GetByName("j");
             var contents = ((JsonResult<IEnumerable<Person>>)result).Content as IEnumerable<Person>;
@@ -80,7 +83,7 @@ namespace SearchWebAPI.Tests
         public void Api_Post_ignores_when_no_person_provided()
         {
             _searchService.Setup(m => m.AddPerson(It.IsAny<Person>()));
-            var controller = new SearchController(_searchService.Object);
+            var controller = new SearchController(_searchService.Object, _logger.Object);
 
             var result = controller.Post(null);
 
@@ -92,7 +95,7 @@ namespace SearchWebAPI.Tests
         public void Api_Post_returns_match_when_value_provided()
         {
             _searchService.Setup(m => m.AddPerson(It.IsAny<Person>()));
-            var controller = new SearchController(_searchService.Object);
+            var controller = new SearchController(_searchService.Object, _logger.Object);
 
             var result = controller.Post(KevinBecker);
 

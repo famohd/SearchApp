@@ -1,4 +1,5 @@
-﻿using System.Web.Mvc;
+﻿using log4net;
+using System.Web.Mvc;
 using System.Web.Optimization;
 using System.Web.Routing;
 
@@ -8,6 +9,7 @@ namespace SearchWebApp
     {
         protected void Application_Start()
         {
+            GlobalContext.Properties["processID"] = "SearchWebApp";
             AreaRegistration.RegisterAllAreas();
             UnityConfig.RegisterComponents();
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);

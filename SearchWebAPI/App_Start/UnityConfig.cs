@@ -4,6 +4,7 @@ using Microsoft.Practices.Unity.Configuration;
 using Search.Repository.Repos;
 using Search.Repository.Service;
 using Search.Repository.Context;
+using LogWrapper;
 
 namespace SearchWebAPI.App_Start
 {
@@ -37,6 +38,7 @@ namespace SearchWebAPI.App_Start
         {
             container.RegisterType<IPersonRepository, PersonRepository>();
             container.RegisterType<ISearchService, SearchService>();
+            container.RegisterType<ICoreLogger, CoreLogger>();
         }
     }
 }

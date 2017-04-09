@@ -112,6 +112,10 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\LogWrapper\LogWrapper.csproj">
+      <Project>{a2c67a66-11ea-4a27-9608-a8ba2de3a3c1}</Project>
+      <Name>LogWrapper</Name>
+    </ProjectReference>
     <ProjectReference Include="..\SearchWebApp\SearchWebApp.csproj">
       <Project>{0EF4DBCB-9401-458E-9175-FFB7DE4FAE8E}</Project>
       <Name>SearchWebApp</Name>

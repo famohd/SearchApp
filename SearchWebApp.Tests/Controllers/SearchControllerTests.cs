@@ -1,4 +1,5 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using LogWrapper;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
 using SearchWebApp.Controllers;
 using SearchWebApp.Service;
@@ -13,11 +14,13 @@ namespace SearchWebApp.Tests.Controllers
     public class SearchControllerTests
     {
         Mock<ISearchApi> _searchApi;
+        Mock<ICoreLogger> _logger;
 
         [TestInitialize]
         public void Setup()
         {
             _searchApi = new Mock<ISearchApi>();
+            _logger = new Mock<ICoreLogger>();
         }
 
 
@@ -25,7 +28,7 @@ namespace SearchWebApp.Tests.Controllers
         public async Task WebApp_Index_returns_all_persons_when_present()
         {
             _searchApi.Setup(m => m.Get(It.IsAny<string>())).Returns(Task.FromResult(IndexSuccessResponse));
-            var controller = new SearchController(_searchApi.Object);
+            var controller = new SearchController(_searchApi.Object, _logger.Object);
 
             var result = await controller.Index();
 
@@ -38,7 +41,7 @@ namespace SearchWebApp.Tests.Controllers
         public async Task WebApp_Index_returns_error_message_on_wep_api_error()
         {
             _searchApi.Setup(m => m.Get(It.IsAny<string>())).Returns(Task.FromResult(IndexFailureResponse));
-            var controller = new SearchController(_searchApi.Object);
+            var controller = new SearchController(_searchApi.Object, _logger.Object);
 
             var result = await controller.Index();
 
@@ -52,7 +55,7 @@ namespace SearchWebApp.Tests.Controllers
         public async Task WebApp_ByName_returns_matching_persons_when_present()
         {
             _searchApi.Setup(m => m.GetByName(It.IsAny<string>(), It.IsAny<string>())).Returns(Task.FromResult(ByNameSuccessResponse));
-            var controller = new SearchController(_searchApi.Object);
+            var controller = new SearchController(_searchApi.Object, _logger.Object);
 
             var result = await controller.ByName("j");
 
@@ -65,7 +68,7 @@ namespace SearchWebApp.Tests.Controllers
         public async Task WebApp_ByName_returns_error_message_on_wep_api_error()
         {
             _searchApi.Setup(m => m.GetByName(It.IsAny<string>(), It.IsAny<string>())).Returns(Task.FromResult(FailureResponse));
-            var controller = new SearchController(_searchApi.Object);
+            var controller = new SearchController(_searchApi.Object, _logger.Object);
 
             var result = await controller.ByName("vv");
 
@@ -78,7 +81,7 @@ namespace SearchWebApp.Tests.Controllers
         public async Task WebApp_ByName_returns_no_content_status_when_no_parameter_passed()
         {
             _searchApi.Setup(m => m.GetByName(It.IsAny<string>(), It.IsAny<string>())).Returns(Task.FromResult(NoContentResponse));
-            var controller = new SearchController(_searchApi.Object);
+            var controller = new SearchController(_searchApi.Object, _logger.Object);
 
             var result = await controller.ByName("");
 
@@ -92,7 +95,7 @@ namespace SearchWebApp.Tests.Controllers
         public async Task WebApp_Create_returns_ok_on_successful_insert()
         {
             _searchApi.Setup(m => m.Add(It.IsAny<string>(), It.IsAny<string>())).Returns(Task.FromResult(OkResponse));
-            var controller = new SearchController(_searchApi.Object);
+            var controller = new SearchController(_searchApi.Object, _logger.Object);
 
             var result = await controller.Create(JohnSmith);
 
@@ -106,7 +109,7 @@ namespace SearchWebApp.Tests.Controllers
         public async Task WebApp_Create_returns_error_on_insert_failure()
         {
             _searchApi.Setup(m => m.Add(It.IsAny<string>(), It.IsAny<string>())).Returns(Task.FromResult(FailureResponse));
-            var controller = new SearchController(_searchApi.Object);
+            var controller = new SearchController(_searchApi.Object, _logger.Object);
 
             var result = await controller.Create("");
 
