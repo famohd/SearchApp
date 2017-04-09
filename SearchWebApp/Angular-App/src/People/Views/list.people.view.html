@@ -1,0 +1,35 @@
+﻿<div class="container">
+    <div class="panel panel-info sPanel">
+        <div class="panel-heading">
+            <h4  class="panel-title"><span class="badge">{{people.length}}</span> Rows Returned</h4>
+        </div>
+        <div class="panel-body">
+            <div cg-busy="promise">
+                <table class="table table-striped table-hover table-responsive">
+                    <thead>
+                        <tr class="bg-primary">
+                            <th class="col-sm-1">Id</th>
+                            <th class="col-sm-2">First Name</th>
+                            <th class="col-sm-2">Last Name</th>
+                            <th class="col-sm-1">Age</th>
+                            <th class="col-sm-2">Address</th>
+                            <th class="col-sm-2">Interests</th>
+                            <th class="col-sm-2">Picture</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="person in people">
+                            <td>{{person.Id}}</td>
+                            <td>{{person.FirstName}}</td>
+                            <td>{{person.LastName}}</td>
+                            <td>{{person.Age}}</td>
+                            <td>{{person.Address}}</td>
+                            <td>{{person.Interests}}</td>
+                            <td><img ng-src="{{person.Picture}}" style="width:70px;height:70px;"/></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

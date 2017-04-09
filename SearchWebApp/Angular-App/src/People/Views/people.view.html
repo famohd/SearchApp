@@ -1,0 +1,23 @@
+﻿<section ng-controller="PeopleController">
+    <div class="row">
+        <div class="col-sm-2">
+            <button type="button" class="btn btn-info" ng-click="listPeople()">Show Persons &nbsp; <span class="glyphicon glyphicon-list"></span></button>
+        </div>
+        <div class="col-sm-2">
+            <button type="button" class="btn btn-info" ui-sref="add">Add Person &nbsp;<span class="glyphicon glyphicon-plus-sign"></span></button>
+        </div>
+        <div class="col-sm-3 col-sm-offset-5">
+            <div class="input-group">
+                <input class="form-control" type="text" id="searchText" ng-model="searchExpr" placeholder="name search" />
+                <span class="input-group-btn">
+                    <button class="btn btn-info" type="button" ng-click="searchByName()"><span class="glyphicon glyphicon-search"></span></button>
+                </span>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div ng-include="'/Angular-App/src/people/views/list.people.view.html'">
+        </div>
+    </div>
+</section>
