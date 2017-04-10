@@ -5,6 +5,16 @@ People Search App using asp.net MVC, Angular /Web API/Entity Framework Code Firs
 >  * search people by first and last name matching the characters in search text box
 >  * Add a new person
 
+### Required tools and software
+    - MS visual studio 2015 
+    - .Net framework 4.5.2
+    - Node.js for running Angular unit tests 
+
+> ### Running the application
+>   + Clone the repository to your PC
+>   + Build the solution (this will download the required nuget packages)
+>   + Set the **SearchWebApp** as your startup project
+>   + Run the Application from VS
 
 ## Project Structure
 
