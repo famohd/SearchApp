@@ -199,9 +199,10 @@
     <Compile Include="Service\SearchApiClient.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Angular-App\assets\green-drops.jpg" />
+    <Content Include="Angular-App\assets\orangesplash.jpg" />
     <Content Include="Angular-App\src\app.js" />
     <Content Include="Angular-App\src\Home\Controllers\home.controller.js" />
-    <Content Include="Angular-App\src\Main.jpg" />
     <Content Include="Angular-App\src\People\Views\error.people.view.html" />
     <Content Include="Angular-App\src\Home\Views\home.view.html" />
     <Content Include="Angular-App\src\People\Controllers\people.controller.js" />
@@ -209,6 +210,7 @@
     <Content Include="Angular-App\src\People\Views\add.people.view.html" />
     <Content Include="Angular-App\src\People\Views\list.people.view.html" />
     <Content Include="Angular-App\src\People\Views\people.view.html" />
+    <Content Include="Angular-App\assets\search-icon.png" />
     <Content Include="Angular-App\test\People\Controllers\people.controller.test.js" />
     <Content Include="Content\angular-busy.css" />
     <Content Include="Content\angular-busy.min.css" />

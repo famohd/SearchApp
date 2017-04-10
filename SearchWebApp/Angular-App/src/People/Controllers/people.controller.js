@@ -12,7 +12,7 @@
                     console.log("success")
                     $scope.people = JSON.parse(results.data)
                 }).catch(function (error) {
-                    $scope.error = error;
+                    console.log(error);
                     $location.path('error');
                 });
 
@@ -28,7 +28,7 @@
                 function (results) {
                     $location.path('people');
                 }).catch(function (error) {
-                    $scope.error = error;
+                    console.log(error);
                     $location.path('error');
                 });
 
@@ -46,7 +46,7 @@
                     console.log("success")
                     $scope.people = JSON.parse(results.data)
                 }).catch(function (error) {
-                    $scope.error = error;
+                    console.log(error);
                     $location.path('error');
                 });
 

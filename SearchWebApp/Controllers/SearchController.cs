@@ -40,7 +40,7 @@ namespace SearchWebApp.Controllers
         {
             try
             {
-                Thread.Sleep(2000);
+                Thread.Sleep(1000);
                 var response = await _searchApi.GetByName("api/v1/search", nameExpr);
                 return await GetResponse(response);
             }
@@ -58,7 +58,7 @@ namespace SearchWebApp.Controllers
         {
             try
             {
-                Thread.Sleep(2000);
+                Thread.Sleep(1000);
                 var response = await _searchApi.Add("api/v1/search", personData);
                 if (response.Content == null)
                 {

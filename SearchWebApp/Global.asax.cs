@@ -9,7 +9,6 @@ namespace SearchWebApp
     {
         protected void Application_Start()
         {
-            GlobalContext.Properties["processID"] = "SearchWebApp";
             AreaRegistration.RegisterAllAreas();
             UnityConfig.RegisterComponents();
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
